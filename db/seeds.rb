@@ -62,7 +62,7 @@ MonthCode.create!(month_number: 12, put_or_call: "Put", month_code: "X")
 
 ColumnMapping.delete_all
 
-ColumnMapping.create!(col_title: "OPTION_UNDL_TICKER", col_type: ColumnMapping.col_types[:input])
+ColumnMapping.create!(col_title: "OPT_UNDL_TICKER", col_type: ColumnMapping.col_types[:input])
 ColumnMapping.create!(col_title: "OPT_EXPIRE_DT", col_type: ColumnMapping.col_types[:input])
 ColumnMapping.create!(col_title: "OPT_PUT_CALL", col_type: ColumnMapping.col_types[:input])
 ColumnMapping.create!(col_title: "OPT_STRIKE_PX", col_type: ColumnMapping.col_types[:input])
