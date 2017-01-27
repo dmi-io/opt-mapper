@@ -1,0 +1,41 @@
+<% provide(:title, "Create Option Map") %>
+
+<h1 class="page-title"> Options Ticker-to-Ric Mapping system</h1>
+<br>
+<p>
+  This module will take a correctly-formatted CSV file where each row contains one complete option input record,
+  process those records, and provide two output files. One output file (named "RIC_DSS_output.csv" before any
+  renaming by the user when saving a local copy) contains rows with just the identifier "RIC" plus the Reuters
+  Identification Code (RIC) for the corresponding input row; the other output file (named "RIC_std_output.csv"
+  before any renaming) contains the RIC as well as a number of other relevant identifier data points.
+</p>
+<p>
+  To utilize this tool, please click <b>[PUT IN PROPER DESCRIPTION HERE]</b>, select the input file you wish to upload,
+  and click "process." Assuming your input file is correctly formatted, the page will process for a few moments
+  and then redirect you to a page containing one link to each of the previously-described output files. 
+</p>
+<p><b>
+  IMPORTANT: this system purposefully does not store copies of input files - it caches the input file, parses it
+  into its database, applies the relevant transformations, returns the two output files, and then deletes the
+  associated database records. By design, given this prototype's lack of information security precautions,
+  no data is retained concerning the input file.
+</b></p>
+<hr />
+<% if @errors.present? %>
+  <h3 style="color: #F00;">
+    <% @errors.each do |err| %>
+      <%= err %>
+    <% end %>
+  </h3>
+  <hr />
+<% end %>
+
+<%= form_for @input_file, :html => { :multipart => true } do |frm| %>
+  <div style="border: solid rgb(0,0,0);">
+    <%= frm.label :inputfile, "Select input csv file to upload: "%>
+    <%= frm.file_field :inputfile %>
+    <%= frm.hidden_field :inputfile_cache %>
+    <br />
+    <%= frm.submit "Upload File", data: { confirm: "Confirm upload?"} %>
+  </div>    
+<% end %>

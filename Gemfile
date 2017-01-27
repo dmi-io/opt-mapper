@@ -5,9 +5,14 @@ ruby '2.1.2' # Heroku stack is on ruby v2.1.2 as of 1/24/17
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 
+
 #### [Database] ####
 # Use Postgres as the database for Active Record
 gem 'pg'
+
+#### [File Handling] ####
+gem 'carrierwave', '~> 1.0'
+
 
 #### [Assets] ####
 # Use SCSS for stylesheets
@@ -41,6 +46,7 @@ group :development do
      gem 'spring'
      gem 'better_errors'
      gem 'pry-rails'
+     gem 'binding_of_caller'
 end
 
 #### [Prod-only gems] ####

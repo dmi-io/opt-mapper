@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  month_number: 1
+  put_or_call: MyString
+  month_code: MyString
+
+two:
+  month_number: 1
+  put_or_call: MyString
+  month_code: MyString

@@ -32,7 +32,13 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.3)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -41,6 +47,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
     hike (1.2.3)
@@ -131,6 +138,8 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
+  carrierwave (~> 1.0)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
