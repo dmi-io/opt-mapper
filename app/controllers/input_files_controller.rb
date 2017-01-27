@@ -19,7 +19,7 @@ class InputFilesController < ApplicationController
     
     out_data_csv = conv_to_csv(out_data_reg)
     
-    send_data out_data_csv, filename: "citco-outputfile_" + DateTime.current.strftime("%Y%m%d-%H%M%S")
+    send_data out_data_csv, filename: "citco-outputfile_" + DateTime.current.strftime("%Y%m%d-%H%M%S") + ".csv"
     
     #redirect_to send_output_files_path 
   end
