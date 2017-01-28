@@ -14,8 +14,6 @@ class InputFilesController < ApplicationController
     input_file = input_filehandle.read
     @input_data = parse_input_file(input_file)
     
-    logger.debug "INPUT DATA CONTENTS: \n #{@input_data}"
-    
     out_data_reg = convert_input_data_reg(@input_data)
     #out_data_dss = convert_input_data_dss(input_data)
     
@@ -110,3 +108,4 @@ private
   end  
   
 end
+

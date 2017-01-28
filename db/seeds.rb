@@ -75,11 +75,11 @@ ColumnMapping.create!(col_title: "UNDERLYING_ID_BB_GLOBAL", col_type: ColumnMapp
 ColumnMapping.create!(col_title: "SECURITY_DES", col_type: ColumnMapping.col_types[:input])
 
 
-ColumnMapping.create!(col_title: "cadis_id", col_type: ColumnMapping.col_types[:out_reg])
-ColumnMapping.create!(col_title: "tid", col_type: ColumnMapping.col_types[:out_reg])
-ColumnMapping.create!(col_title: "id_bb_global", col_type: ColumnMapping.col_types[:out_reg])
-ColumnMapping.create!(col_title: "UNDERLYING_ID_BB_GLOBAL", col_type: ColumnMapping.col_types[:out_reg])
-ColumnMapping.create!(col_title: "SECURITY_DES", col_type: ColumnMapping.col_types[:out_reg])
+ColumnMapping.create!(col_title: "cadis_id", col_type: ColumnMapping.col_types[:out_reg], mapping_type: "direct")
+ColumnMapping.create!(col_title: "tid", col_type: ColumnMapping.col_types[:out_reg], mapping_type: "direct")
+ColumnMapping.create!(col_title: "id_bb_global", col_type: ColumnMapping.col_types[:out_reg], mapping_type: "direct")
+ColumnMapping.create!(col_title: "UNDERLYING_ID_BB_GLOBAL", col_type: ColumnMapping.col_types[:out_reg], mapping_type: "direct")
+ColumnMapping.create!(col_title: "SECURITY_DES", col_type: ColumnMapping.col_types[:out_reg], mapping_type: "direct")
 ColumnMapping.create!(col_title: "Option RIC", col_type: ColumnMapping.col_types[:out_reg])
 
 
