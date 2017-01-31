@@ -18,14 +18,14 @@ class InputFilesController < ApplicationController
     
     out_data_reg = convert_input_data_reg(@input_data)
     
-    if output_type == ColumnMapping.col_types[:out_reg]
+    #if output_type == ColumnMapping.col_types[:out_reg]
       out_data_csv = conv_to_csv(out_data_reg)
       outfile_type = "file_"
-    else
-      out_data_dss = gen_dss_data(out_data_reg)
-      out_data_csv = conv_to_csv(out_data_dss, ColumnMapping.col_types[:out_dss])
-      outfile_type = "dss_"
-    end 
+    #else
+    #  out_data_dss = gen_dss_data(out_data_reg)
+    #  out_data_csv = conv_to_csv(out_data_dss, ColumnMapping.col_types[:out_dss])
+    #  outfile_type = "dss_"
+    #end 
     
     send_data out_dss_csv, filename: "citco-output" + outfile_type + DateTime.current.strftime("%Y%m%d-%H%M%S") + ".csv"
     
