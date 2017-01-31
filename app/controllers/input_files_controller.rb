@@ -66,7 +66,7 @@ private
       out_data[0] << col_map.col_title
     end
     input_data.each_with_index do |inp_data_row, idx|
-      if idx > 0
+      if idx > 0 && inp_data_row["OPT_UNDL_TICKER"].present?
         out_data[idx] = []
         ColumnMapping.where(col_type: ColumnMapping.col_types[:out_reg]).order(:id).each do | col_map |
           if col_map.mapping_type == "direct"
