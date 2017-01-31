@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   # resource route (maps HTTP verbs to controller actions automatically):
   resources :input_files
+  
+  #resources :input_files do
+    #post 'create', to: 'input_files#create', as: :create
+  #end
 
   # You can have the root of your site routed with "root"
   root 'input_files#new'

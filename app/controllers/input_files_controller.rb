@@ -1,19 +1,19 @@
 class InputFilesController < ApplicationController
   
   def new
-    @input_file = InputFile.new
-   #@filetypes_collection = [ ["Regular", ColumnMapping.col_types[:out_reg] ],
-   #                           ["DSS", ColumnMapping.col_types[:out_dss] ]
-   #                         ]
+    @input_files = InputFile.new
+    set_options
   end
   
   def create
+    @input_files = InputFile.new
+    set_options
     input_filehandle = params[:input_file][:inputfile]
-    output_type = params[:out_type]
+    output_type = params[:input_file][:out_type]
+    @errors = []
     
     if input_filehandle.nil?
-      @errors = ["No input file"]
-      @input_file = InputFile.new
+      @errors << "No input file"
       render new_input_file_path and return
     end
     input_file = input_filehandle.read
@@ -21,14 +21,17 @@ class InputFilesController < ApplicationController
     
     out_data_reg = convert_input_data_reg(@input_data)
     
-    #if output_type == ColumnMapping.col_types[:out_reg]
-      out_data_csv = conv_to_csv(out_data_reg)
+    if output_type.to_i == ColumnMapping.col_types[:out_reg]
+      out_data_csv = conv_to_csv(out_data_reg, ColumnMapping.col_types[:out_reg])
       outfile_type = "file_"
-    #else
-    #  out_data_dss = gen_dss_data(out_data_reg)
-    #  out_data_csv = conv_to_csv(out_data_dss, ColumnMapping.col_types[:out_dss])
-    #  outfile_type = "dss_"
-    #end 
+    elsif output_type.to_i == ColumnMapping.col_types[:out_dss]
+      out_data_dss = gen_dss_data(out_data_reg)
+      out_data_csv = conv_to_csv(out_data_dss, ColumnMapping.col_types[:out_dss])
+      outfile_type = "dss_"
+    else
+      @errors << "No output type selected"
+      render new_input_file_path and return
+    end
     
     send_data out_data_csv, filename: "citco-output" + outfile_type + DateTime.current.strftime("%Y%m%d-%H%M%S") + ".csv"
     
@@ -85,9 +88,9 @@ private
     return out_data
   end
   
-  def conv_to_csv(out_data, out_type = ColumnMapping.col_types[:out_reg])
+  def conv_to_csv(out_data, out_type)
     # regular output file has headers, dss does not
-    CSV.generate(headers: out_type == ColumnMapping.col_types[:out_reg]) do |csv|
+    CSV.generate(headers: out_type.to_i == ColumnMapping.col_types[:out_reg]) do |csv|
       out_data.each do |row|
         csv << row
       end
@@ -121,9 +124,17 @@ private
   def gen_dss_data(output_dataset)
     dss_data = []
     output_dataset.each_with_index do |datarow, idx|
-      dss_data[idx] = ["RIC", datarow[ColumnMapping.where(col_type: ColumnMapping.col_types[:out_reg]).count - 1] ]
+      unless idx == 0
+        dss_data << ["RIC", datarow[ColumnMapping.where(col_type: ColumnMapping.col_types[:out_reg]).count - 1] ]
+      end
     end
     return dss_data
+  end
+
+  def set_options 
+    @out_type_options = { 'Regular' => ColumnMapping.col_types[:out_reg] ,
+                          'DSS' => ColumnMapping.col_types[:out_dss]
+                        }
   end
   
 end

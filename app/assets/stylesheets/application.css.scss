@@ -15,12 +15,15 @@
  *
  */
 
+/* MIXIN OVERRIDES */
 
 @mixin box-shadow($shadow...) {
   -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
   box-shadow: $shadow;
 }
 
+
+/* IMPORTS */
 
 @import "theme/variables";
 
@@ -32,9 +35,21 @@
 
 
 
+
+
+/* ELEMENT OVERRIDES */
+
 p {
   text-align: justify;
 }
+
+h1 {
+  font-size: 44px;
+}
+
+
+
+/* TEXT PROPERTY CLASSES */
 
 .text-right {
   text-align: right !important;
@@ -51,6 +66,37 @@ p {
 .text-center {
   text-align: center !important;
 }
+
+.text-bold {
+  font-weight: bold !important;
+}
+
+.text-bolder {
+  font-weight: bolder !important;
+}
+
+.text-italic {
+  font-style: italic !important;
+}
+
+.text-small {
+  font-size: 0.85em;
+}
+
+.text-smaller {
+  font-size: 0.7em;
+}
+
+.text-mini {
+  font-size: 0.6em;
+}
+
+.text-micro {
+  font-size: 0.45em;
+}
+
+/* MARGINS & PADDING */
+
 
 .tenpx-margin {
   margin: 10px !important;
@@ -114,4 +160,12 @@ p {
 
 .no-padding-right {
   padding-right: 0px !important;
+}
+
+
+
+/* BACKGROUND STYLES */
+
+.white-background {
+  background-color: #FFF !important;
 }
