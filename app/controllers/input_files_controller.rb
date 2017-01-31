@@ -2,11 +2,14 @@ class InputFilesController < ApplicationController
   
   def new
     @input_file = InputFile.new
+    #@filetypes_collection = [ ["Regular", ColumnMapping.col_types[:out_reg] ],
+                              ["DSS", ColumnMapping.col_types[:out_dss] ]
+                            ]
   end
   
   def create
     input_filehandle = params[:input_file][:inputfile]
-    output_type = params[:out_type]
+    #output_type = params[:out_type]
     
     if input_filehandle.nil?
       @errors = ["No input file"]
@@ -27,7 +30,7 @@ class InputFilesController < ApplicationController
     #  outfile_type = "dss_"
     #end 
     
-    send_data out_dss_csv, filename: "citco-output" + outfile_type + DateTime.current.strftime("%Y%m%d-%H%M%S") + ".csv"
+    send_data out_data_csv, filename: "citco-output" + outfile_type + DateTime.current.strftime("%Y%m%d-%H%M%S") + ".csv"
     
   end
   
