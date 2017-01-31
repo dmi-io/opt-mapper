@@ -10,13 +10,15 @@ gem 'rails', '4.1.8'
 # Use Postgres as the database for Active Record
 gem 'pg'
 
+
 #### [File Handling] ####
 gem 'carrierwave', '~> 1.0'
 
 
+
 #### [Assets] ####
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -31,6 +33,10 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-turbolinks'
+# Use bootstrap for front end
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'autoprefixer-rails'
+
 
 
 #### [Other] ####

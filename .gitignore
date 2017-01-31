@@ -14,3 +14,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore SASS cache files
+
+/app/stylesheets/.sass-cache/*
+/app/stylesheets/theme/.sass-cache/*
+*.scssc

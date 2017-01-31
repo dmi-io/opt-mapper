@@ -6,6 +6,8 @@ class InputFilesController < ApplicationController
   
   def create
     input_filehandle = params[:input_file][:inputfile]
+    output_type = params[:out_type]
+    
     if input_filehandle.nil?
       @errors = ["No input file"]
       @input_file = InputFile.new
@@ -15,13 +17,18 @@ class InputFilesController < ApplicationController
     @input_data = parse_input_file(input_file)
     
     out_data_reg = convert_input_data_reg(@input_data)
-    #out_data_dss = convert_input_data_dss(input_data)
     
-    out_data_csv = conv_to_csv(out_data_reg)
+    if output_type == ColumnMapping.col_types[:out_reg]
+      out_data_csv = conv_to_csv(out_data_reg)
+      outfile_type = "file_"
+    else
+      out_data_dss = gen_dss_data(out_data_reg)
+      out_data_csv = conv_to_csv(out_data_dss, ColumnMapping.col_types[:out_dss])
+      outfile_type = "dss_"
+    end 
     
-    send_data out_data_csv, filename: "citco-outputfile_" + DateTime.current.strftime("%Y%m%d-%H%M%S") + ".csv"
+    send_data out_dss_csv, filename: "citco-output" + outfile_type + DateTime.current.strftime("%Y%m%d-%H%M%S") + ".csv"
     
-    #redirect_to send_output_files_path 
   end
   
 private
@@ -76,6 +83,7 @@ private
   end
   
   def conv_to_csv(out_data, out_type = ColumnMapping.col_types[:out_reg])
+    # regular output file has headers, dss does not
     CSV.generate(headers: out_type == ColumnMapping.col_types[:out_reg]) do |csv|
       out_data.each do |row|
         csv << row
@@ -106,6 +114,14 @@ private
   def format_exch_code(exch_code)
     return (exch_code == "US" ? ".U" : "*")
   end  
+  
+  def gen_dss_data(output_dataset)
+    dss_data = []
+    output_dataset.each_with_index do |datarow, idx|
+      dss_data[idx] = ["RIC", datarow[ColumnMapping.where(col_type: ColumnMapping.col_types[:out_reg]).count - 1] ]
+    end
+    return dss_data
+  end
   
 end
 

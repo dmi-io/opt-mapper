@@ -1,41 +1,68 @@
 <% provide(:title, "Create Option Map") %>
 
-<h1 class="page-title"> Options Ticker-to-Ric Mapping system</h1>
-<br>
-<p>
-  This module will take a correctly-formatted CSV file where each row contains one complete option input record,
-  process those records, and provide two output files. One output file (named "RIC_DSS_output.csv" before any
-  renaming by the user when saving a local copy) contains rows with just the identifier "RIC" plus the Reuters
-  Identification Code (RIC) for the corresponding input row; the other output file (named "RIC_std_output.csv"
-  before any renaming) contains the RIC as well as a number of other relevant identifier data points.
-</p>
-<p>
-  To utilize this tool, please click <b>[PUT IN PROPER DESCRIPTION HERE]</b>, select the input file you wish to upload,
-  and click "process." Assuming your input file is correctly formatted, the page will process for a few moments
-  and then redirect you to a page containing one link to each of the previously-described output files. 
-</p>
-<p><b>
-  IMPORTANT: this system purposefully does not store copies of input files - it caches the input file, parses it
-  into its database, applies the relevant transformations, returns the two output files, and then deletes the
-  associated database records. By design, given this prototype's lack of information security precautions,
-  no data is retained concerning the input file.
-</b></p>
-<hr />
+<div class="row">
+  <div class="col-xs-3 col-xs-offset-1 text-center tenpx-margin-top tenpx-margin-bottom ">
+    <%= image_tag "Shorelogo.png", size: "249x130", style: "background-color: white;" %>
+  </div>
+  <div class="col-xs-7 text-center tenpx-margin-top">
+    <h1 class="text-success" style="margin-top: 44px;"> Options Ticker-to-Ric Mapper</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-justify tenpx-margin-top tenpx-margin-bottom">
+    This module accepts a correctly-formatted CSV file where each row contains one complete option input record,
+    processes those records, and provides an output file <!--configured one of two ways: the "regular" output file-->
+    containing <!--contains--> a number of output data points per row, each of which is described in a header row. <!--, while the "DSS"
+    output file contains rows with just the identifier "RIC" plus the Reuters Identification Code (RIC) for
+    the corresponding input row.-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-justify tenpx-margin-top tenpx-margin-bottom">
+    To utilize this tool, please click the "Choose File" button, select the input file you wish to upload,
+    and click "process." Assuming your input file is correctly formatted, the page will process for a few moments
+    and then return an output file.
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 text-justify text-bold tenpx-margin-top tenpx-margin-bottom">
+    IMPORTANT: this system purposefully does not store copies of input files - it caches the input file, parses it
+    into working memory, applies the relevant transformations, and returns the output file. By design, given this
+    prototype's lack of information security precautions, no data is retained concerning the input file.
+  </div>
+</div>
+
 <% if @errors.present? %>
-  <h3 style="color: #F00;">
-    <% @errors.each do |err| %>
-      <%= err %>
-    <% end %>
-  </h3>
-  <hr />
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 text-justify tenpx-margin-top tenpx-margin-bottom">
+      <div class="alert alert-error">
+        <h3 style="color: #FFF;">
+          <% @errors.each do |err| %>
+            <%= err %>
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>  
 <% end %>
 
-<%= form_for @input_file, :html => { :multipart => true } do |frm| %>
-  <div style="border: solid rgb(0,0,0);">
-    <%= frm.label :inputfile, "Select input csv file to upload: "%>
-    <%= frm.file_field :inputfile %>
-    <%= frm.hidden_field :inputfile_cache %>
-    <br />
-    <%= frm.submit "Upload File", data: { confirm: "Confirm upload?"} %>
-  </div>    
-<% end %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2 text-justify tenpx-margin-top tenpx-margin-bottom">
+    <div class="well">
+      <%= form_for @input_file, :html => { :multipart => true, :class => "form-horizontal" } do |frm| %>
+        <div class="form-group">
+          <%= frm.label :inputfile, "Select input csv file to upload: ", class: "col-xs-2 control-label no-margin-top no-padding-top" %>
+          <div class="col-xs-10 tenpx-margin-top">
+            <%= frm.file_field :inputfile, class: "form-control" %>
+            <%= frm.hidden_field :inputfile_cache %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4 col-xs-offset-2">
+            <%= frm.submit "Upload File", data: { confirm: "Confirm upload?"}, class: "btn btn-info" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

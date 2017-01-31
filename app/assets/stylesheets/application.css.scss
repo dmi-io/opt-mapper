@@ -1,0 +1,117 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ * the require_tree . that was here previously was removed to allow manual control
+ *= require_self
+ *
+ */
+
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+  box-shadow: $shadow;
+}
+
+
+@import "theme/variables";
+
+@import "bootstrap-sprockets";
+
+@import "theme/bootstrap";
+
+@import "theme/bootswatch";
+
+
+
+p {
+  text-align: justify;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.tenpx-margin {
+  margin: 10px !important;
+}
+
+.tenpx-margin-top {
+  margin-top: 10px !important;
+}
+
+.tenpx-margin-bottom {
+  margin-bottom: 10px !important;
+}
+
+.tenpx-margin-left {
+  margin-left: 10px !important;
+}
+
+.tenpx-margin-right {
+  margin-right: 10px !important;
+}
+
+.control-label {
+  font-size: 14px;
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.no-margin-top {
+  margin-top: 0px !important;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px !important;
+}
+
+.no-margin-left {
+  margin-left: 0px !important;
+}
+
+.no-margin-right {
+  margin-right: 0px !important;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.no-padding-top {
+  padding-top: 0px !important;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0px !important;
+}
+
+.no-padding-left {
+  padding-left: 0px !important;
+}
+
+.no-padding-right {
+  padding-right: 0px !important;
+}
